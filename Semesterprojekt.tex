@@ -1,0 +1,82 @@
+\documentclass[fontsize=12pt]{scrreprt}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+
+\title{Semesterprojekt - Systemsicherheit}
+\begin{document}
+	
+	\tableofcontents
+	\chapter{Schutzziele}
+	Linux-Arbeitsfläche für Mitarbeiter einer Office-Umgebung.\newline
+	
+	\section{Anforderungen an das System (CIA Schutzziele)}
+	\subsection{Sicherheit - Confidentiality}
+	Sollte den neuesten Standard der Sicherheit entsprechen.
+	\begin{itemize}
+		\item Regelmäßige Sicherheitsupdates.
+		\item Nach außen hin abgeriegelt sein (Interne Firewall).
+		\item Abgesicherte Zugangspunkte für Mitarbeiter (Extern).
+		\item Regelungen der Programmbenutzung. Nur Systemadministratoren sollten neue Programme dazu schalten können.
+		\item Einschränkung der Webseitenbenutzung. Vermeidung von Pishing-Sites.
+		\item Sicherheitsüberprüfung der ankommenden E-mails.
+	\end{itemize}
+	\subsection{Integrität - Integrity}
+	\subsection{Verlässlichkeit - Availability}
+	System sollte zuverlässlich sein.
+	\begin{itemize}
+		\item System sollte nicht instabil sein => Abstürze usw. vermeiden. => Keine Testing-Distributionen.
+		\item Vermeidung von Hardware-Schäden. => Kostenfalle
+	\end{itemize}
+	\chapter{Systemsetup}
+	\section{Software}
+	\subsection{Authentifizierungssysteme}
+	\subsubsection{Kerberos}
+	% Gamze
+	\subsubsection{AppArmor}
+	% Philipp
+	\subsubsection{SELinux}
+	% Fabian
+	\subsection{Firewall}
+	\subsubsection{iptables}
+	iptables ist ein Paketfilter, der eingehende und ausgehende Pakete vom und zum Computer überwacht.
+	\subsubsection{SuSEfirewall2}
+	SuSEfirewall2 ist ein Skript, welches Regeln für iptables automatisch erstellt.
+	\subsubsection{ufw}
+	ufw ist ein einfaches Konsolen-Frontend für iptables.
+	\section{Hardware}
+	Davon ausgegangen wird, dass sowohl Laptops, als auch PCs (Personal Computers) im Office-Betrieb sind. Die Laptops sollten dabei mit nach Hause genommen werden können.
+	\section{Betriebssystem}
+	\subsection{Ubuntu}
+	Ubuntu ist eine von der Firma Canonical entwickelte auf Debian basierende Linux Distribution für den Desktop und Office Betrieb. Ubuntu eignet sich darin möglichst anfängerfreundlich zu sein. Ubuntu nutzt ein Bündel an vorinstallierter Software und man kann ganz ohne spezifische Linux Kenntnisse anfangen mit zu arbeiten.
+	\subsubsection{Firewall}
+	Ubuntu nutzt ufw.
+	\subsubsection{Desktop}
+	Ubuntu kommt in verschiedenen Ausführungen. Dabei sind das normale Ubuntu, welches auf Unity-Desktop von Canonical basiert, Kubuntu auf KDE-Basis und Xubuntu auf Xfce-Basis die bekanntesten.
+	\subsection{Mint}
+	Linux Mint ist ein Ableger von Ubuntu. Dabei versucht Mint nicht kommerziell zu sein und wird von einer großen Community weiterentwickelt.
+	\subsubsection{Firewall}
+	Linux Mint nutzt ufw und stellt der Einfachheit im Desktop das Programm Gufw zur Verfügung. Welches ufw per GUI verwalten lässt.
+	\subsubsection{Desktop}
+	Linux Mint nutzt MATE und das hauseigene Cinnamon als Desktops.
+	\subsection{SuSE}
+	\subsection{Debian}
+	Debian ist einer der beliebtesten von einer Community entwickelten Server Distributionen. Man kann Debian allerdings auch für den Desktop Betrieb verwenden. Es ist komplett Opensource und verfolgt das freie Software-Prinzip. Somit wird Debian als Betriebssystem nur mit nicht lizenzierter Software ausgeliefert. Debian kommt in 3 Varianten. Debian Stable, Testing und Sid. Debian Stable verspricht stabil zu sein und Software- und Kernelpakete müssen einen langen Testzyklus durchlaufen bevor sie in den Stable Zweig aufgenommen werden. Dies schadet natürlich der Aktualität der Pakete. Debian Testing nimmt Pakete vom Sid-Zweig auf, nachdem sie auf Stabilität getestet wurden, verspricht aber nicht fehlerfrei zu sein. Debian Sid kann unstabil werden, enthält aber die aktuellsten Pakete.
+	\subsection{ArchLinux}
+	ArchLinux ist eine von der Community entwickelten Rolling Release Distribution. Rolling Release heißt, dass es verspricht vom Kernel und der mitgelieferten Software immer auf den aktuellsten Stand zu sein. Aber die Installation von ArchLinux gestaltet sich als eher kompliziert und bedeutet recht viel Arbeit mit der Konsole. Somit ist es nicht unbedingt für Einsteiger geeignet und ist auch nicht unbedingt immer 100 Prozent stabil oder fehlerfrei. 
+	\subsection{Manjaro}
+	Manjaro baut auf ArchLinux auf und hat den Ziel ArchLinux für den Anwender so einfach wie möglich zu machen. Manjaro lässt sich mit einer Oberfläche installieren. Allerdings wartet Manjaro bei einem neuen Packet auf ArchLinux immer damit bis es getestet wurde ehe es selbst als Update einspielt. Damit hat Manjaro einen eher scheinbaren Rolling Release Status und ist auch nicht immer aktuell. Dies bedeutet aber auch, dass es um einiges sicherer und stabiler ist.
+	\subsection{Gentoo}
+	\subsection{Slackware}
+	\subsection{Fazit}
+	\chapter{Rechtemodellierung}
+	\chapter{Kommunikationssicherheit}
+	\section{E-mail}
+	E-mails sind heutzutage eines der wichtigsten Sicherheitsaspekte in der Systemsicherheit. Eine Menge von Hacking-Versuchen und das Einspielen von Schadsoftware entstehen durch den Austausch von E-mail. So ist es möglich seine Idendität per E-mail vorzutäuschen, einen Virus oder Trojaner im E-mail Anhang zu verschicken oder einen Mitarbeiter per Social Hacking zu einem Fehler zu verleiten, welcher ein Einfallstor in die Firma bietet.
+	\subsection{GPG}
+	Eines der bekanntesten Möglichkeiten ist es seine E-mails per GPG abzusichern. GPG hat ein Ende-zu-Ende Verschlüsselung Prinzip. Das heißt zwei Clients haben einen Private Key und einen Public Key. Beide tauschen untereinander ihren Public Key aus und verschlüsseln ihre Nachricht mit dem Public Key des jeweiligen Anderen. Nur derjenige der im Besitz des Private Key ist, kann dann die Nachricht wieder entschlüsseln. Dieses Verfahren gilt als so ziemlich die sicherste Methode sich vor Idenditätsbetrug und auch vorm Abfangen von Daten zu schützen. Denn falls eine E-mail abgefangen wird, kann derjenige, der sie abgefangen hat, nichts mit der Nachricht anfangen.
+	\section{VPN}
+\end{document}
+
+	
